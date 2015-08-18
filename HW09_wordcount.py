@@ -45,6 +45,30 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+def print_words(filename):
+  # runs the function to count frequency of each word, prints each word and frequency on one line.
+  words_histo_ordered = sorted(give_word_count(filename).items())
+  for word, count in words_histo_ordered:
+    print word, count
+
+
+def print_top(filename):
+  count_histo_ordered = sorted(((y,x) for (x,y) in give_word_count(filename).items()), reverse=True)
+  iterations = 0
+  while iterations <= 20:
+    print count_histo_ordered[iterations][0], count_histo_ordered[iterations][1]
+    iterations += 1
+
+def give_word_count(filename):
+  word_count = {}
+  with open(filename) as f:
+    word_list = f.read().lower().split()
+  word_count = {word:0 for word in word_list}
+  for word in word_list:
+    word_count[word] = word_count.get(word,0) + 1
+  return word_count       # returns a dict of tuples organized by word as [0] and count as [1]
+
+
 ###
 
 # This basic command line argument parsing code is provided and

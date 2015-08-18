@@ -8,11 +8,27 @@
 #     b
 ###############################################################################
 # Imports
+import re 
 
 # Body
 
 def most_frequent(s):
-    print s
+    """This function takes a string and returns single characters on separate 
+    lines in order of decreasing frequency in the original string."""
+    frequency = {}
+    # eliminate spaces and punctuation
+    new_s = re.split('\W+', s)
+    new_s = ''.join(new_s)
+    for item in new_s.lower():                        # set everything to lowercase
+        # set frequency to zero as default and add one for each appearance
+        frequency[item] = frequency.setdefault(item, 0) + 1
+    # invert it so we can sort by frequency
+    freq_by_freq = [(y,x) for (x,y) in frequency.items()]
+    # then actually sort by frequency
+    decreasing = sorted(freq_by_freq, reverse=True)
+    for each in decreasing:
+        print each[1]
+
 
 ###############################################################################
 def main():   # DO NOT CHANGE BELOW

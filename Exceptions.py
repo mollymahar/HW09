@@ -2,9 +2,9 @@ x = 0
 y = 1
 names = ["Guido"]
 try:
-    this
-    print names[y]
-    ans = 3/x
+    # this
+    # print names[y]
+    # ans = 3/x
     if x < 2:
         raise ValueError("this function requires x >= 2")
     pass
@@ -26,7 +26,7 @@ while True:
         test = raw_input(">")
         if test == "done":
             break
-    except Exception:
+    except Exception:               # Exception doesn't catch CTRL + C, whereas a naked except also counts CTRL + C as an exception
         print("\nTry again:")
     # except:
     #     print("\nTry again:")
